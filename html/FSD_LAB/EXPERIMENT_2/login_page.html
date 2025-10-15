@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +6,15 @@
     <title>Login Page</title>
 </head>
 <body>
-    <table border="1" width="1000" height="600" align="center">
+    <table border="1" width="1000" height="600">
         <!-- Header Row -->
-        <tr bgcolor="orange" height="80">
-            <th width="200">Logo</th>
-            <th colspan="5">WebSite Name</th>
+        <tr>
+            <th bgcolor="orange" width="200">Logo</th>
+            <th colspan="5" bgcolor="orange">WebSite Name</th>
         </tr>
 
-        <!-- Menu Row -->
-        <tr bgcolor="#f5cba7" height="50" style="text-align:center;">
+        <!-- Navigation Row -->
+        <tr bgcolor="#f5d7bd" style="text-align:center;">
             <td>Home</td>
             <td>Login</td>
             <td>Registration</td>
@@ -21,31 +22,32 @@
             <td>Cart</td>
         </tr>
 
-        <!-- Content Row -->
-        <tr height="400">
-            <!-- Left Side Branches -->
-            <td rowspan="4" width="150" valign="top">
+        <!-- Main Content -->
+        <tr>
+            <!-- Left side menu -->
+            <td rowspan="4" style="text-align:left; padding-left:20px;">
                 CSE <br><br>
                 ECE <br><br>
                 EEE <br><br>
                 CIVIL
             </td>
 
-            <!-- Right Side Login Form -->
-            <td colspan="4" style="text-align:center; font-style:italic;">
+            <!-- Right side login form -->
+            <td colspan="4" rowspan="4" style="text-align:center;">
                 <h3>Login Page</h3>
                 <form>
                     <label>User Name:</label>
                     <input type="text" name="username"><br><br>
 
-                    <label>Password:</label>
+                    <label>Passwords:</label>
                     <input type="password" name="password"><br><br>
 
-                    <input type="submit" value="Submit" style="color:red; font-weight:bold;">
-                    <input type="reset" value="Reset" style="color:red; font-weight:bold;">
+                    <input type="submit" value="Submit" style="color:red;">
+                    <input type="reset" value="Reset" style="color:red;">
                 </form>
             </td>
         </tr>
     </table>
 </body>
 </html>
+```

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Filters Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .filter-card {
+            text-align: center;
+        }
+
+        .filter-card img {
+            width: 250px;
+            height: 250px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 3px solid #ddd;
+        }
+
+        /* Various filters */
+        .grayscale img { filter: grayscale(100%); }
+        .blur img { filter: blur(3px); }
+        .brightness img { filter: brightness(1.3); }
+        .contrast img { filter: contrast(1.5); }
+        .sepia img { filter: sepia(100%); }
+        .invert img { filter: invert(100%); }
+        .none img { filter: none; }
+
+        /* Hover effect to remove filter */
+        .filter-card img:hover {
+            filter: none;
+            transform: scale(1.05);
+            border-color: #555;
+        }
+
+        p {
+            margin-top: 8px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>CSS Image Filters Gallery</h2>
+
+    <div class="gallery">
+        <div class="filter-card grayscale">
+            <img src="paris.jpg" alt="Grayscale">
+            <p>Grayscale</p>
+        </div>
+
+        <div class="filter-card blur">
+            <img src="paris.jpg" alt="Blur">
+            <p>Blur</p>
+        </div>
+
+        <div class="filter-card brightness">
+            <img src="paris.jpg" alt="Brightness">
+            <p>Brightness</p>
+        </div>
+
+        <div class="filter-card contrast">
+            <img src="paris.jpg" alt="Contrast">
+            <p>Contrast</p>
+        </div>
+
+        <div class="filter-card sepia">
+            <img src="paris.jpg" alt="Sepia">
+            <p>Sepia</p>
+        </div>
+
+        <div class="filter-card invert">
+            <img src="paris.jpg" alt="Invert">
+            <p>Invert</p>
+        </div>
+
+        <div class="filter-card none">
+            <img src="paris.jpg" alt="Original">
+            <p>Original</p>
+        </div>
+    </div>
+
+</body>
+</html>

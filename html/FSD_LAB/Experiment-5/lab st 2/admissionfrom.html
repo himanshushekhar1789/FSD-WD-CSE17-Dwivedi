@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admission Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e9e9e9;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container {
+            background: white;
+            width: 380px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 7px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            background: green;
+            color: white;
+            padding: 10px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Student Admission Form</h2>
+
+    <div class="form-container">
+
+        <form onsubmit="return validateForm()">
+
+            <label>Full Name:</label>
+            <input type="text" id="name" placeholder="Enter full name">
+
+            <label>Email:</label>
+            <input type="email" id="email" placeholder="Enter email">
+
+            <label>Phone Number:</label>
+            <input type="text" id="phone" placeholder="Enter 10-digit number">
+
+            <label>Gender:</label><br>
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+            <br><br>
+
+            <label>Select Course:</label>
+            <select id="course">
+                <option value="">--Select--</option>
+                <option>BCA</option>
+                <option>B.Tech</option>
+                <option>B.Sc</option>
+                <option>MBA</option>
+            </select>
+
+            <label>Address:</label>
+            <textarea id="address" rows="3"></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            let course = document.getElementById("course").value;
+            let address = document.getElementById("address").value;
+
+            if (name === "" || email === "" || phone === "" || course === "" || address === "") {
+                alert("Please fill all fields!");
+                return false;
+            }
+
+            if (phone.length != 10) {
+                alert("Phone number must be 10 digits!");
+                return false;
+            }
+
+            alert("Form Submitted Successfully!");
+            return true;
+        }
+    </script>
+
+</body>
+</html>

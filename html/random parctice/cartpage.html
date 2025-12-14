@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+th, td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+}
+th {
+  background-color: orange;
+  font-size: 20px;
+}
+tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+tr:nth-child(even) {
+  background-color: #fff4e6;
+}
+td:first-child {
+  font-weight: bold;
+  background-color: #fff2cc;
+}
+caption {
+  caption-side: top;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+
+    </style>
+</head>
+<body>
+    <caption>Book Store Data</caption>
+
+    <table border="1" width="100" height="100">
+    <tr>
+    <th>Logo</th>
+    <th colspan="4"> web site name</th>
+    </tr>
+    <tr>
+        <td>home</td>
+        <td>login</td>
+        
+        <td>register</td>
+        <td>catalogue</td>
+        <td>cart</td>
+    </tr>
+    <tr>
+        <td>cse</td>
+        <td>book name</td>
+        <td>price</td>
+        <td>quantity</td>
+        <td>amount</td>
+    </tr>
+    <tr>
+        <td>ECE</td>
+        <td>Java 2</td>
+        <td>$35.5</td>
+        <td>2</td>
+        <td>$70</td>
+    </tr>
+    <tr>
+        <td>EEE</td>
+        <td>XML Bible</td>
+        <td>$40.5</td>
+        <td>1</td>
+        <td>$40.5</td>
+    </tr>
+    <tr>
+        <td>CIVIL</td>
+        <td>total amount</td>
+        <td colspan="4">$130.5</td>
+    </tr>
+    </table>
+</body>
+</html>

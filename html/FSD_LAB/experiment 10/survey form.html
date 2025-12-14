@@ -1,0 +1,254 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Survey Form</title> 
+    <style> 
+        
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+  font-family: "Poppins", sans-serif; 
+} 
+ 
+body { 
+  background: linear-gradient(135deg, #a8edea, #fed6e3); 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  min-height: 100vh; 
+} 
+ 
+.container { 
+  background-color: #fff; 
+  width: 90%; 
+  max-width: 600px; 
+  padding: 30px 40px; 
+  border-radius: 20px; 
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
+  transition: 0.3s ease; 
+} 
+ 
+.container:hover { 
+  transform: translateY(-3px); 
+} 
+ 
+h1 { 
+  text-align: center; 
+  color: #333; 
+  margin-bottom: 10px; 
+  font-size: 2rem; 
+} 
+ 
+#description { 
+  text-align: center; 
+  font-size: 1rem; 
+ 
+ 
+  color: #555; 
+  margin-bottom: 25px; 
+} 
+ 
+form { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 20px; 
+} 
+ 
+.form-group { 
+  display: flex; 
+  flex-direction: column; 
+} 
+ 
+label { 
+  margin-bottom: 8px; 
+  font-weight: 600; 
+  color: #333; 
+} 
+ 
+.form-control { 
+  padding: 10px 12px; 
+  border: 1.5px solid #ccc; 
+  border-radius: 10px; 
+  font-size: 1rem; 
+  outline: none; 
+  transition: 0.3s ease; 
+} 
+ 
+.form-control:focus { 
+  border-color: #6a11cb; 
+  box-shadow: 0 0 8px rgba(106, 17, 203, 0.2); 
+} 
+.input-radio, 
+.input-checkbox { 
+  margin-right: 8px; 
+  accent-color: #6a11cb; 
+} 
+ 
+.form-group p { 
+  font-weight: 600; 
+  color: #444; 
+  margin-bottom: 10px; 
+} 
+ 
+/* === Textarea === */ 
+textarea { 
+  min-height: 100px; 
+  resize: vertical; 
+} 
+ 
+ 
+ 
+#submit { 
+  background: linear-gradient(135deg, #6a11cb, #2575fc); 
+  color: white; 
+  font-size: 1rem; 
+  font-weight: 600; 
+  padding: 12px; 
+  border: none; 
+  border-radius: 10px; 
+  cursor: pointer; 
+  transition: 0.3s ease; 
+} 
+ 
+#submit:hover { 
+  background: linear-gradient(135deg, #5b0cb3, #1a5fd0); 
+  transform: scale(1.03); 
+} 
+ 
+.error { 
+  color: red; 
+  text-align: center; 
+  font-weight: 500; 
+  margin-top: -10px; 
+} 
+.hidden { 
+  display: none; 
+} 
+ 
+#thank-you { 
+  text-align: center; 
+  margin-top: 30px; 
+} 
+ 
+#thank-you h2 { 
+  color: #6a11cb; 
+  font-size: 1.8rem; 
+} 
+ 
+#thank-you p { 
+  color: #333; 
+} 
+ 
+ 
+@media (max-width: 500px) { 
+  .container { 
+    padding: 25px; 
+  } 
+ 
+  h1 { 
+    font-size: 1.6rem; 
+  } 
+ 
+ 
+ 
+  .form-control { 
+    font-size: 0.9rem; 
+  } 
+ 
+  #submit { 
+    font-size: 0.95rem; 
+  } 
+} 
+ 
+    </style> 
+</head> 
+<body> 
+    <div class="container"> 
+        <h1>Survey Form</h1> 
+        <p id="description">Let us know your feedback to improve our service.</p> 
+ 
+        <form id="survey-form" onsubmit="return validateForm()"> 
+            <div class="form-group"> 
+                <label id="name-label" for="name">Name:</label> 
+                <input type="text" id="name" name="name" placeholder="Enter your name" class="form
+control" required> 
+            </div> 
+ 
+            <div class="form-group"> 
+                <label id="email-label" for="email">Email:</label> 
+                <input type="email" id="email" name="email" placeholder="Enter your email" class="form
+control" required> 
+            </div> 
+ 
+            <div class="form-group"> 
+                <label id="number-label" for="age">Age (optional):</label> 
+                <input type="number" id="age" name="age" min="10" max="99" placeholder="Age" 
+class="form-control"> 
+            </div> 
+ 
+            <div class="form-group"> 
+                <label for="role">Which option best describes your current role?</label> 
+                <select id="role" name="role" class="form-control" required> 
+                    <option disabled selected value="">Select current role</option> 
+                    <option value="student">Student</option> 
+                    <option value="job">Job</option> 
+                    <option value="learner">Learner</option> 
+                    <option value="other">Other</option> 
+                </select> 
+            </div> 
+ 
+            <div class="form-group"> 
+                <p>How likely are you to recommend our service to a friend?</p> 
+                <label> 
+ 
+ 
+                    <input type="radio" name="recommend" value="definitely" class="input-radio"> 
+Definitely 
+                </label> 
+                <label> 
+                    <input type="radio" name="recommend" value="maybe" class="input-radio"> Maybe 
+                </label> 
+                <label> 
+                    <input type="radio" name="recommend" value="not-sure" class="input-radio"> Not sure 
+                </label> 
+            </div> 
+ 
+            <div class="form-group"> 
+                <p>What do you like most about our service? (Check all that apply)</p> 
+                <label> 
+                    <input type="checkbox" name="like" value="features" class="input-checkbox"> Features 
+                </label> 
+                <label> 
+                    <input type="checkbox" name="like" value="support" class="input-checkbox"> Support 
+                </label> 
+                <label> 
+                    <input type="checkbox" name="like" value="price" class="input-checkbox"> Price 
+                </label> 
+                <label> 
+                    <input type="checkbox" name="like" value="ease-of-use" class="input-checkbox"> Ease 
+of Use 
+                </label> 
+            </div> 
+ 
+            <div class="form-group"> 
+                <label for="comments">Any comments or suggestions?</label> 
+                <textarea id="comments" name="comments" placeholder="Enter your comments here..." 
+class="form-control"></textarea> 
+            </div> 
+ 
+            <div id="error-message" class="error"></div> 
+            <button type="submit" id="submit">Submit</button> 
+        </form> 
+ 
+        <div id="thank-you" class="hidden"> 
+            <h2>Thank You!</h2> 
+            <p>Your feedback has been received.</p> 
+        </div> 
+    </div> 
+ 
+    <script src="script.js"></script> 
+</body> 
+</html> 

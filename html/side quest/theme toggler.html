@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Theme Toggle</title>
+<style>
+body{
+  background:#020617;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:Arial;
+}
+.dark{background:#020617;color:white}
+.light{background:#f9fafb;color:black}
+</style>
+</head>
+<body class="dark">
+
+<button onclick="toggle()">Toggle Theme</button>
+
+<script>
+function toggle(){
+  document.body.className =
+    document.body.className==="dark"?"light":"dark"
+}
+</script>
+
+</body>
+</html>

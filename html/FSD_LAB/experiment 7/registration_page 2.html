@@ -1,0 +1,191 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Registration Form with JS Validation</title> 
+ 
+    <style> 
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: rgb(242, 247, 255); 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+        } 
+ 
+        .container { 
+            background-color: rgb(255, 255, 255); 
+            border-radius: 15px; 
+            padding: 25px 30px; 
+            width: 350px; 
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+        } 
+ 
+        p, label { 
+            font-weight: bold; 
+            font-size: 18px; 
+            margin-bottom: 10px; 
+            display: block; 
+        } 
+ 
+        button { 
+            background-color: rgb(255, 228, 196); 
+            border: none; 
+            padding: 7px 10px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold; 
+        } 
+ 
+        button:hover { 
+            background-color: rgb(255, 239, 213); 
+        } 
+ 
+        .checkbox { 
+            background-color: rgb(255, 239, 207); 
+ 
+ 
+            border-radius: 8px; 
+            padding: 10px; 
+            margin-top: 15px; 
+            margin-bottom: 15px; 
+        } 
+ 
+        .checkbox input { 
+            margin-right: 5px; 
+        } 
+ 
+        .sex { 
+            margin-top: 20px; 
+            display: block; 
+        } 
+ 
+        .radio-group { 
+            margin-top: 8px; 
+            margin-bottom: 25px; 
+        } 
+ 
+        .add { 
+            margin-top: 20px; 
+            display: block; 
+        } 
+ 
+        .add input { 
+            margin-top: 8px; 
+        } 
+ 
+        .title { 
+            text-align: center; 
+            font-size: 24px; 
+            font-weight: bold; 
+            color: rgb(165, 42, 42); 
+            margin-bottom: 20px; 
+        } 
+ 
+        .submit-btn { 
+            background-color: rgb(165, 42, 42); 
+            color: rgb(255, 255, 255); 
+            border: none; 
+            padding: 10px 15px; 
+            border-radius: 6px; 
+            font-size: 16px; 
+            width: 100%; 
+            cursor: pointer; 
+            margin-top: 20px; 
+        } 
+ 
+        .submit-btn:hover { 
+            background-color: rgb(139, 0, 0); 
+ 
+ 
+        } 
+    </style> 
+</head> 
+<body> 
+ 
+    <div class="container"> 
+        <div class="title">Registration Form</div> 
+ 
+        <form onsubmit="return validateForm()"> 
+            <p class="name">Name: <br> 
+                <input type="text" id="name" placeholder="Enter your name"> 
+            </p> 
+ 
+            <p class="Password">Password: <br> 
+                <input type="password" id="password" placeholder="Enter your password"> 
+            </p> 
+ 
+            <p class="mail">E-Mail ID: <br> 
+                <input type="email" id="email" placeholder="Enter your email"> 
+            </p> 
+ 
+            <p class="ph">Phone Number: <br> 
+                <button type="button">+91</button> 
+                <input type="number" id="phone" placeholder="10-digit phone number"> 
+            </p> 
+ 
+            <div class="checkbox"> 
+                <p>Languages Known:</p> 
+                <input type="checkbox" name="language" value="English"> English 
+                <input type="checkbox" name="language" value="Telugu"> Telugu 
+                <input type="checkbox" name="language" value="Hindi"> Hindi 
+                <input type="checkbox" name="language" value="Tamil"> Tamil 
+            </div> 
+ 
+            <p>DOB: <br><input type="date" id="dob" name="dob"></p> 
+             
+            <label class="sex">Sex:</label> 
+            <div class="radio-group"> 
+                <input type="radio" id="male" name="sex" value="Male"> Male 
+                <input type="radio" id="female" name="sex" value="Female"> Female 
+            </div> 
+ 
+            <label for="Address" class="add">Address: <br> 
+                <input type="text" id="address" placeholder="Enter your address"> 
+            </label> 
+ 
+            <button type="submit" class="submit-btn">Submit</button> 
+        </form> 
+    </div> 
+ 
+    <script> 
+ 
+ 
+        function validateForm() { 
+            let name = document.getElementById("name").value.trim(); 
+            let password = document.getElementById("password").value.trim(); 
+            let email = document.getElementById("email").value.trim(); 
+            let phone = document.getElementById("phone").value.trim(); 
+ 
+            let namePattern = /^[A-Za-z\s]+$/; 
+            if (!name.match(namePattern) || name.length < 6) { 
+                alert("Name should contain only alphabets and be at least 6 characters long."); 
+                return false; 
+            } 
+ 
+            if (password.length < 6) { 
+                alert("Password should be at least 6 characters long."); 
+                return false; 
+            } 
+ 
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
+            if (!email.match(emailPattern)) { 
+                alert("Please enter a valid email address (e.g., name@domain.com)."); 
+                return false; 
+            } 
+ 
+            let phonePattern = /^[0-9]{10}$/; 
+            if (!phone.match(phonePattern)) { 
+                alert("Phone number must contain exactly 10 digits."); 
+                return false; 
+            } 
+ 
+            alert("Form submitted successfully!"); 
+            return true; 
+        } 
+    </script> 
+ 
+</body> 
+</html> 

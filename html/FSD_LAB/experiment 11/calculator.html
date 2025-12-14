@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f7f6;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        .calculator {
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            background-color: #3a4750;
+            padding: 20px;
+            width: 320px;
+        }
+        #display {
+            width: 100%;
+            height: 60px;
+            background-color: #a4b0be;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: right;
+            padding: 0 15px;
+            font-size: 2.5em;
+            color: #333;
+            box-sizing: border-box;
+            overflow-x: hidden;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .buttons button {
+            padding: 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .buttons button:active {
+            opacity: 0.8;
+        }
+        .number,
+        [data-action="decimal"] {
+            background-color: #647d94;
+            color: #fff;
+        }
+        .number:hover,
+        [data-action="decimal"]:hover {
+            background-color: #7993ad;
+        }
+        .operator {
+            background-color: #f7a072;
+            color: #333;
+        }
+        .operator:hover {
+            background-color: #f8b191;
+        }
+        .equal {
+            background-color: #007bff;
+            color: #fff;
+            grid-column: span 2;
+        }
+        .equal:hover {
+            background-color: #0069d9;
+        }
+        .zero {
+            grid-column: span 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <div class="buttons">
+            <button class="operator" data-action="clear">AC</button>
+            <button class="operator" data-action="backspace">←</button>
+            <button class="operator" data-action="percentage">%</button>
+            <button class="operator" data-action="divide">/</button>
+            <button class="number">7</button>
+            <button class="number">8</button>
+            <button class="number">9</button>
+            <button class="operator" data-action="multiply">*</button>
+            <button class="number">4</button>
+            <button class="number">5</button>
+            <button class="number">6</button>
+            <button class="operator" data-action="subtract">-</button>
+            <button class="number">1</button>
+            <button class="number">2</button>
+            <button class="number">3</button>
+            <button class="operator" data-action="add">+</button>
+            <button class="zero number">0</button>
+            <button class="number" data-action="decimal">.</button>
+            <button class="equal" data-action="calculate">=</button>
+        </div>
+    </div>
+    <script>document.addEventListener('DOMContentLoaded', () => {
+            const display = document.getElementById('display');
+            const buttons = document.querySelector('.buttons');
+            let firstOperand = null;
+            let operator = null;
+            let waitingForSecondOperand = false;
+            let displayValue = '0';
+            function updateDisplay() {
+                display.value = displayValue;
+            }
+            function inputDigit(digit) {
+                if (waitingForSecondOperand === true) {
+                    displayValue = digit;
+                    waitingForSecondOperand = false;
+                } else {
+                    displayValue = displayValue === '0' ? digit : displayValue + digit;
+                }
+                updateDisplay();
+            }
+            function inputDecimal() {
+                if (waitingForSecondOperand === true) {
+                    displayValue = '0.';
+                    waitingForSecondOperand = false;
+                    updateDisplay();
+                    return;
+                }
+                if (!displayValue.includes('.')) {
+                    displayValue += '.';
+                }
+                updateDisplay();
+            }
+            function handleOperator(nextOperator) {
+                const inputValue = parseFloat(displayValue);
+                if (operator && waitingForSecondOperand) {
+                    operator = nextOperator;
+                    return;
+                }
+
+                // The first time an operator is pressed
+                if (firstOperand === null) {
+                    firstOperand = inputValue;
+                } else if (operator) {
+                    const result = calculate(firstOperand, inputValue, operator);
+                    displayValue = String(result);
+                    firstOperand = result;
+                }
+
+                waitingForSecondOperand = true;
+                operator = nextOperator;
+                updateDisplay();
+            }
+
+            // The core calculation logic
+            function calculate(first, second, op) {
+                switch (op) {
+                    case '+': return first + second;
+                    case '-': return first - second;
+                    case '*': return first * second;
+                    case '/': return first / second;
+                    case '%': return first * (second / 100);
+                    default: return second;
+                }
+            }
+            function clearCalculator() {
+                firstOperand = null;
+                operator = null;
+                waitingForSecondOperand = false;
+                displayValue = '0';
+                updateDisplay();
+            }
+            buttons.addEventListener('click', (event) => {
+                const { target } = event;
+                if (!target.matches('button')) {
+                    return;
+                }
+                if (target.classList.contains('operator')) {
+                    const action = target.dataset.action;
+                    const textContent = target.textContent;
+                    switch (action) {
+                        case 'clear':
+                            clearCalculator();
+                            break;
+                        case 'backspace':
+                            displayValue = displayValue.length === 1 ? '0' : displayValue.slice(0, -1);
+                            updateDisplay();
+                            break;
+                        case 'calculate':
+                            if (firstOperand === null || operator === null) {
+                                return;
+                            }
+                            handleOperator(operator);
+                            operator = null; // Clear the operator
+                            waitingForSecondOperand = true;
+                            break;
+                        default:
+                            handleOperator(textContent);
+                            break;
+                    }
+                    return;
+                }
+                if (target.classList.contains('number')) {
+                    const action = target.dataset.action;
+                    if (action === 'decimal') {
+                        inputDecimal();
+                    } else {
+                        inputDigit(target.textContent);
+                    }
+                    return;
+                }
+            });
+            updateDisplay();
+        });</script>
+</body>
+</html>

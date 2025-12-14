@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Weather UI</title>
+<style>
+body{
+  background:#020617;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:Arial;
+  color:white;
+}
+.card{
+  background:#0f172a;
+  padding:25px;
+  border-radius:10px;
+  text-align:center;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Weather</h2>
+  <input id="city" placeholder="Enter city"><br><br>
+  <button onclick="show()">Check</button>
+  <h3 id="out"></h3>
+</div>
+
+<script>
+function show(){
+  const c = city.value
+  out.textContent = "Weather in " + c + ": Sunny ☀️ 28°C"
+}
+</script>
+
+</body>
+</html>

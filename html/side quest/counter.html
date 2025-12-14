@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Counter</title>
+<style>
+body{
+  background:#020617;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:Arial;
+  color:white;
+}
+.box{
+  text-align:center;
+  background:#0f172a;
+  padding:30px;
+  border-radius:10px;
+}
+button{
+  padding:10px;
+  margin:5px;
+  font-size:18px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h1 id="count">0</h1>
+  <button onclick="inc()">+</button>
+  <button onclick="dec()">-</button>
+  <button onclick="reset()">Reset</button>
+</div>
+
+<script>
+let c=0
+function inc(){ count.textContent=++c }
+function dec(){ count.textContent=--c }
+function reset(){ c=0; count.textContent=c }
+</script>
+
+</body>
+</html>
